@@ -12,7 +12,18 @@ type GinServer struct {
 	app  *gin.Engine
 }
 
+func Default() *GinServer {
+	s := &GinServer{}
+	s.SetDefaults()
+
+	return s
+}
+
 func (gs *GinServer) SetDefaults() {
+	if gs.app == nil {
+		gs.app = gin.Default()
+	}
+
 	if gs.Port == 0 {
 		gs.Port = 80
 	}
